@@ -37,24 +37,24 @@ export default function Home() {
       {/* Premium Header */}
       <header className="relative bg-gradient-to-r from-blue-800/95 to-indigo-800/95 backdrop-blur-md border-b border-blue-600/30 shadow-2xl">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-6">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-2xl blur opacity-75"></div>
-                <div className="relative p-4 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-xl">
-                  <Shield className="h-10 w-10 text-white" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8 relative">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="flex items-center space-x-3 md:space-x-6">
+              <div className="relative flex-shrink-0">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-xl md:rounded-2xl blur opacity-75"></div>
+                <div className="relative p-2 md:p-4 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl md:rounded-2xl shadow-xl">
+                  <Shield className="h-6 w-6 md:h-10 md:w-10 text-white" />
                 </div>
               </div>
-              <div>
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent mb-2">
+              <div className="min-w-0 flex-1">
+                <h1 className="text-xl md:text-4xl font-bold bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent mb-1 md:mb-2 leading-tight">
                   수입신고 검증 시스템
                 </h1>
-                <p className="text-blue-100 text-lg font-medium">AI 기반 관세청 신고서 사전 검증</p>
+                <p className="text-blue-100 text-sm md:text-lg font-medium">AI 기반 관세청 신고서 사전 검증</p>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 shadow-xl px-4 py-2 text-sm font-semibold">
+            <div className="flex items-center justify-end space-x-2 md:space-x-4">
+              <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 shadow-xl px-2 py-1 md:px-4 md:py-2 text-xs md:text-sm font-semibold">
                 🚀 데모 버전
               </Badge>
               <div className="hidden md:flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
@@ -67,70 +67,72 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
         {/* Hero Section */}
-        <div className="text-center mb-24">
-          <div className="mb-12">
-            <div className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 backdrop-blur-md border border-blue-400/40 rounded-full mb-8 shadow-xl hover:scale-105 transition-transform">
-              <span className="text-blue-100 text-base font-semibold">🏆 2025 관세청 적극행정·규제혁신 아이디어 대국민 공모전 출품작</span>
+        <div className="text-center mb-16 md:mb-24">
+          <div className="mb-8 md:mb-12">
+            <div className="inline-flex items-center px-3 py-2 md:px-8 md:py-4 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 backdrop-blur-md border border-blue-400/40 rounded-full mb-6 md:mb-8 shadow-xl hover:scale-105 transition-transform mx-2">
+              <span className="text-blue-100 text-xs md:text-base font-semibold text-center leading-tight">
+                🏆 2025 관세청 적극행정·규제혁신<br className="md:hidden" /> 아이디어 대국민 공모전 출품작
+              </span>
             </div>
-            <h2 className="text-6xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-white via-blue-100 to-indigo-200 bg-clip-text text-transparent leading-tight">
+            <h2 className="text-3xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-white via-blue-100 to-indigo-200 bg-clip-text text-transparent leading-tight px-2">
               수입신고 오류를<br />
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">사전에 검증</span>하세요
             </h2>
-            <p className="text-2xl text-blue-100 mb-12 max-w-5xl mx-auto leading-relaxed">
-              첨단 AI 기술로 HS코드, 가격, 원산지를 실시간 분석하여<br />
+            <p className="text-base md:text-2xl text-blue-100 mb-8 md:mb-12 max-w-5xl mx-auto leading-relaxed px-4">
+              첨단 AI 기술로 HS코드, 가격, 원산지를<br className="md:hidden" /> 실시간 분석하여<br />
               <span className="text-cyan-300 font-semibold bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">통관 지연과 추가 비용을 원천 차단</span>합니다
             </p>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center items-center mb-16">
-            <Link href="/validation" className="w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 justify-center items-center mb-12 md:mb-16 px-4">
+            <Link href="/validation" className="w-full sm:w-auto max-w-sm">
               <Button 
                 size="lg" 
                 className={`group relative bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 border-0 rounded-2xl tour-validation-button ${
-                  isMobile ? 'w-full py-4 px-8 text-lg min-h-[60px]' : 'px-12 py-6 text-xl'
+                  isMobile ? 'w-full py-4 px-6 text-base min-h-[56px]' : 'px-12 py-6 text-xl'
                 }`}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-2xl blur opacity-0 group-hover:opacity-50 transition-opacity"></div>
                 <div className="relative flex items-center justify-center">
-                  <FileText className={`group-hover:rotate-12 transition-transform ${isMobile ? 'mr-3 h-5 w-5' : 'mr-4 h-7 w-7'}`} />
+                  <FileText className={`group-hover:rotate-12 transition-transform ${isMobile ? 'mr-2 h-5 w-5' : 'mr-4 h-7 w-7'}`} />
                   수입신고 검증하기
-                  <div className="ml-3 opacity-70 group-hover:translate-x-1 transition-transform">→</div>
+                  <div className="ml-2 opacity-70 group-hover:translate-x-1 transition-transform">→</div>
                 </div>
               </Button>
             </Link>
-            <Link href="/fta-calculator" className="w-full sm:w-auto">
+            <Link href="/fta-calculator" className="w-full sm:w-auto max-w-sm">
               <Button 
                 size="lg" 
                 className={`group relative bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white/20 hover:border-white/50 font-bold shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 rounded-2xl tour-fta-button ${
-                  isMobile ? 'w-full py-4 px-8 text-lg min-h-[60px]' : 'px-12 py-6 text-xl'
+                  isMobile ? 'w-full py-4 px-6 text-base min-h-[56px]' : 'px-12 py-6 text-xl'
                 }`}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div className="relative flex items-center justify-center">
-                  <Calculator className={`group-hover:rotate-12 transition-transform ${isMobile ? 'mr-3 h-5 w-5' : 'mr-4 h-7 w-7'}`} />
+                  <Calculator className={`group-hover:rotate-12 transition-transform ${isMobile ? 'mr-2 h-5 w-5' : 'mr-4 h-7 w-7'}`} />
                   FTA 혜택 계산하기
-                  <div className="ml-3 opacity-70 group-hover:translate-x-1 transition-transform">→</div>
+                  <div className="ml-2 opacity-70 group-hover:translate-x-1 transition-transform">→</div>
                 </div>
               </Button>
             </Link>
           </div>
 
           {/* Real-time Dashboard */}
-          <div className="mb-20 tour-dashboard">
-            <div className="text-center mb-12">
-              <h3 className="text-4xl font-bold text-white mb-4">
+          <div className="mb-16 md:mb-20 tour-dashboard">
+            <div className="text-center mb-8 md:mb-12 px-4">
+              <h3 className="text-2xl md:text-4xl font-bold text-white mb-2 md:mb-4">
                 📊 실시간 시스템 현황
               </h3>
-              <p className="text-blue-200 text-lg">AI 검증 시스템의 실시간 운영 상태를 확인하세요</p>
+              <p className="text-blue-200 text-sm md:text-lg">AI 검증 시스템의 실시간 운영 상태를 확인하세요</p>
             </div>
 {isMobile ? <MobileOptimizedDashboard /> : <RealtimeDashboard />}
           </div>
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20 tour-features">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-16 md:mb-20 tour-features px-4 md:px-0">
           <Card className="group text-center bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-blue-400/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
             <CardHeader className="pb-4">
               <div className="mx-auto mb-4 p-4 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl w-16 h-16 flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
@@ -189,15 +191,15 @@ export default function Home() {
         </div>
 
         {/* Demo Scenarios */}
-        <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-3xl border border-white/20 p-10 mb-20 shadow-2xl tour-demo-scenarios">
-          <div className="text-center mb-10">
-            <h3 className="text-3xl font-bold text-white mb-4">
+        <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-white/20 p-6 md:p-10 mb-16 md:mb-20 shadow-2xl tour-demo-scenarios mx-4 md:mx-0">
+          <div className="text-center mb-8 md:mb-10">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 md:mb-4">
               🎯 실시간 데모 시나리오
             </h3>
-            <p className="text-blue-200 text-lg">실제 수입신고 케이스로 시스템 성능을 확인해보세요</p>
+            <p className="text-blue-200 text-sm md:text-lg px-2">실제 수입신고 케이스로 시스템 성능을 확인해보세요</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-10">
             <Card className="group bg-gradient-to-br from-green-500/20 to-emerald-600/20 border border-green-400/30 hover:border-green-400/60 transition-all duration-300 hover:scale-105">
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -294,7 +296,7 @@ export default function Home() {
           
           <div className="text-center">
             <Link href="/validation">
-              <Button className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-3 text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 border-0">
+              <Button className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-6 md:px-8 py-3 text-base md:text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 border-0 rounded-xl">
                 🚀 지금 바로 테스트해보기
               </Button>
             </Link>
