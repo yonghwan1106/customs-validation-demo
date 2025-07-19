@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(del *.png)",
+      "Bash(rm:*)",
+      "Bash(git init:*)",
+      "Bash(git config:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ],
+    "deny": []
+  }
+}

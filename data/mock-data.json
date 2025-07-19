@@ -1,0 +1,178 @@
+{
+  "hsCodes": [
+    {
+      "code": "8471300000",
+      "description": "휴대용 자동자료처리기계",
+      "description_en": "Portable automatic data processing machines",
+      "base_tariff_rate": "8.0%",
+      "keywords": "노트북,랩톱,laptop,notebook,컴퓨터",
+      "avg_price_usd": 850.00,
+      "price_std_dev": 200.00,
+      "common_origins": "중국,대만,베트남"
+    },
+    {
+      "code": "8517120000",
+      "description": "무선전화기",
+      "description_en": "Wireless telephones",
+      "base_tariff_rate": "8.0%",
+      "keywords": "스마트폰,휴대폰,아이폰,갤럭시,smartphone,phone",
+      "avg_price_usd": 800.00,
+      "price_std_dev": 300.00,
+      "common_origins": "중국,한국,대만"
+    },
+    {
+      "code": "8471490000",
+      "description": "기타 자동자료처리기계",
+      "description_en": "Other automatic data processing machines",
+      "base_tariff_rate": "8.0%",
+      "keywords": "데스크탑,컴퓨터,PC,desktop",
+      "avg_price_usd": 600.00,
+      "price_std_dev": 150.00,
+      "common_origins": "중국,대만,한국"
+    },
+    {
+      "code": "8528721000",
+      "description": "액정디스플레이 수상기",
+      "description_en": "LCD monitors and projectors",
+      "base_tariff_rate": "8.0%",
+      "keywords": "모니터,디스플레이,LCD,monitor,display",
+      "avg_price_usd": 300.00,
+      "price_std_dev": 100.00,
+      "common_origins": "중국,한국,대만"
+    },
+    {
+      "code": "9102210000",
+      "description": "자동권취식 손목시계",
+      "description_en": "Automatic winding wrist watches",
+      "base_tariff_rate": "8.0%",
+      "keywords": "시계,손목시계,스마트워치,watch,smartwatch",
+      "avg_price_usd": 400.00,
+      "price_std_dev": 250.00,
+      "common_origins": "중국,스위스,일본"
+    }
+  ],
+  "ftaRates": [
+    {
+      "hscode": "8471300000",
+      "country": "중국",
+      "fta_rate": "0%",
+      "base_rate": "8.0%",
+      "requires_certificate": true,
+      "certificate_type": "원산지증명서"
+    },
+    {
+      "hscode": "8471300000",
+      "country": "미국",
+      "fta_rate": "0%",
+      "base_rate": "8.0%",
+      "requires_certificate": true,
+      "certificate_type": "Form A"
+    },
+    {
+      "hscode": "8517120000",
+      "country": "중국",
+      "fta_rate": "0%",
+      "base_rate": "8.0%",
+      "requires_certificate": true,
+      "certificate_type": "원산지증명서"
+    },
+    {
+      "hscode": "8517120000",
+      "country": "한국",
+      "fta_rate": "0%",
+      "base_rate": "8.0%",
+      "requires_certificate": false,
+      "certificate_type": null
+    }
+  ],
+  "priceStats": [
+    {
+      "hscode": "8471300000",
+      "avg_price": 850.00,
+      "std_dev": 200.00,
+      "min_price": 400.00,
+      "max_price": 1500.00,
+      "sample_count": 1000
+    },
+    {
+      "hscode": "8517120000",
+      "avg_price": 800.00,
+      "std_dev": 300.00,
+      "min_price": 200.00,
+      "max_price": 1500.00,
+      "sample_count": 1500
+    }
+  ],
+  "demoScenarios": [
+    {
+      "id": "scenario_1",
+      "name": "성공적인 검증",
+      "description": "정상적인 신고서 입력으로 모든 검증을 통과하는 시나리오",
+      "expected_outcome": "success",
+      "input_data": {
+        "itemName": "애플 아이폰 15",
+        "hsCode": "8517120000",
+        "origin": "중국",
+        "quantity": 1,
+        "unitPrice": 800,
+        "unit": "대"
+      }
+    },
+    {
+      "id": "scenario_2",
+      "name": "HS코드 오분류 검출",
+      "description": "잘못된 HS코드 입력으로 AI가 경고하는 시나리오",
+      "expected_outcome": "warning",
+      "input_data": {
+        "itemName": "삼성 갤럭시북 프로",
+        "hsCode": "8517120000",
+        "origin": "한국",
+        "quantity": 1,
+        "unitPrice": 1200,
+        "unit": "대"
+      }
+    },
+    {
+      "id": "scenario_3",
+      "name": "가격 이상치 검출",
+      "description": "비정상적으로 낮은 가격으로 이상치가 검출되는 시나리오",
+      "expected_outcome": "error",
+      "input_data": {
+        "itemName": "아이폰 15 Pro",
+        "hsCode": "8517120000",
+        "origin": "중국",
+        "quantity": 1,
+        "unitPrice": 100,
+        "unit": "대"
+      }
+    },
+    {
+      "id": "scenario_4",
+      "name": "FTA 혜택 최적화",
+      "description": "FTA 혜택을 최대한 활용할 수 있는 시나리오",
+      "expected_outcome": "success",
+      "input_data": {
+        "itemName": "독일산 자동차 부품",
+        "hsCode": "8471300000",
+        "origin": "독일",
+        "quantity": 10,
+        "unitPrice": 500,
+        "unit": "개"
+      }
+    },
+    {
+      "id": "scenario_5",
+      "name": "복합 오류 검출",
+      "description": "여러 오류가 동시에 발생하는 복합적인 시나리오",
+      "expected_outcome": "error",
+      "input_data": {
+        "itemName": "중국산 스마트워치",
+        "hsCode": "8471300000",
+        "origin": "중국",
+        "quantity": 100,
+        "unitPrice": 50,
+        "unit": "박스"
+      }
+    }
+  ]
+}

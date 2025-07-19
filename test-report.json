@@ -1,0 +1,186 @@
+{
+  "timestamp": "2025-07-18T09:23:24.135Z",
+  "testResults": [
+    {
+      "name": "메인 페이지",
+      "url": "http://localhost:3005",
+      "status": "success",
+      "loadTime": 1446,
+      "errors": [],
+      "missingElements": [],
+      "screenshots": [
+        "screenshot-main-page-full.png",
+        "screenshot-main-page-viewport.png"
+      ],
+      "styles": {
+        "body": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+        },
+        "header": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "linear-gradient(to right, rgba(30, 64, 175, 0.95), rgba(55, 48, 163, 0.95))",
+          "backdropFilter": "blur(12px)"
+        },
+        "buttons": [
+          {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "backgroundImage": "linear-gradient(to right, rgb(37, 99, 235), rgb(79, 70, 229))",
+            "borderRadius": "16px",
+            "padding": "24px 48px"
+          },
+          {
+            "backgroundColor": "rgba(255, 255, 255, 0.1)",
+            "backgroundImage": "none",
+            "borderRadius": "16px",
+            "padding": "24px 48px"
+          },
+          {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "backgroundImage": "linear-gradient(to right, rgb(37, 99, 235), rgb(8, 145, 178))",
+            "borderRadius": "8px",
+            "padding": "12px 32px"
+          }
+        ],
+        "cardCount": 40,
+        "hasGradients": true,
+        "hasTailwind": true
+      },
+      "performance": {
+        "domContentLoaded": null,
+        "loadComplete": null,
+        "firstPaint": 788
+      },
+      "title": "Create Next App"
+    },
+    {
+      "name": "수입신고 검증 페이지",
+      "url": "http://localhost:3005/validation",
+      "status": "success",
+      "loadTime": 1408,
+      "errors": [
+        "입력 필드 오류: elementHandle.fill: Error: Element is not an <input>, <textarea> or [contenteditable] element\nCall log:\n\u001b[2m    - fill(\"테스트 데이터\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and editable\u001b[22m\n"
+      ],
+      "missingElements": [
+        "input[placeholder*=\"상품명\"]",
+        "input[placeholder*=\"HS코드\"]",
+        "input[placeholder*=\"원산지\"]",
+        "input[placeholder*=\"수량\"]",
+        "input[placeholder*=\"단가\"]",
+        "button:has-text(\"검증하기\")"
+      ],
+      "screenshots": [
+        "screenshot-validation-page-full.png",
+        "screenshot-validation-page-viewport.png"
+      ],
+      "styles": {
+        "body": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+        },
+        "header": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "linear-gradient(to right, rgba(30, 64, 175, 0.95), rgba(55, 48, 163, 0.95))",
+          "backdropFilter": "blur(12px)"
+        },
+        "buttons": [
+          {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "backgroundImage": "none",
+            "borderRadius": "8px",
+            "padding": "0px 12px"
+          },
+          {
+            "backgroundColor": "rgba(255, 255, 255, 0.1)",
+            "backgroundImage": "none",
+            "borderRadius": "8px",
+            "padding": "8px 12px"
+          },
+          {
+            "backgroundColor": "rgba(255, 255, 255, 0.1)",
+            "backgroundImage": "none",
+            "borderRadius": "8px",
+            "padding": "8px 12px"
+          }
+        ],
+        "cardCount": 22,
+        "hasGradients": true,
+        "hasTailwind": true
+      },
+      "performance": {
+        "domContentLoaded": null,
+        "loadComplete": null,
+        "firstPaint": 628
+      },
+      "title": "Create Next App"
+    },
+    {
+      "name": "FTA 혜택 계산 페이지",
+      "url": "http://localhost:3005/fta-calculator",
+      "status": "success",
+      "loadTime": 1358,
+      "errors": [
+        "입력 필드 오류: elementHandle.fill: Error: Element is not an <input>, <textarea> or [contenteditable] element\nCall log:\n\u001b[2m    - fill(\"테스트 데이터\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and editable\u001b[22m\n"
+      ],
+      "missingElements": [
+        "input[placeholder*=\"HS코드\"]",
+        "input[placeholder*=\"원산지\"]",
+        "input[placeholder*=\"총 가격\"]",
+        "button:has-text(\"계산하기\")"
+      ],
+      "screenshots": [
+        "screenshot-fta-calculator-page-full.png",
+        "screenshot-fta-calculator-page-viewport.png"
+      ],
+      "styles": {
+        "body": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+        },
+        "header": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "linear-gradient(to right, rgba(107, 33, 168, 0.95), rgba(157, 23, 77, 0.95))",
+          "backdropFilter": "blur(12px)"
+        },
+        "buttons": [
+          {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "backgroundImage": "none",
+            "borderRadius": "8px",
+            "padding": "0px 12px"
+          },
+          {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "backgroundImage": "none",
+            "borderRadius": "8px",
+            "padding": "8px 12px"
+          },
+          {
+            "backgroundColor": "rgb(147, 51, 234)",
+            "backgroundImage": "none",
+            "borderRadius": "8px",
+            "padding": "8px 16px"
+          }
+        ],
+        "cardCount": 13,
+        "hasGradients": true,
+        "hasTailwind": true
+      },
+      "performance": {
+        "domContentLoaded": null,
+        "loadComplete": null,
+        "firstPaint": 588
+      },
+      "title": "Create Next App"
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "successful": 3,
+    "failed": 0,
+    "averageLoadTime": 1404
+  }
+}
