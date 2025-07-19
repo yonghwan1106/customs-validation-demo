@@ -57,73 +57,67 @@ const DashboardPDFReport: React.FC<DashboardPDFReportProps> = ({ stats, classNam
       // stats가 없거나 비어있는 경우 기본값 사용
       const currentStats = stats && Object.keys(stats).length > 0 ? stats : defaultStats;
       
-      // 한글 텍스트를 위한 헬퍼 함수
-      const addKoreanText = (text: string, x: number, y: number, options?: any) => {
-        try {
-          // 한글 텍스트를 Base64로 인코딩하여 처리
-          const canvas = document.createElement('canvas');
-          const ctx = canvas.getContext('2d');
-          if (ctx) {
-            ctx.font = '16px Arial, sans-serif';
-            const textWidth = ctx.measureText(text).width;
-            
-            // 텍스트가 너무 길면 줄바꿈 처리
-            if (textWidth > pageWidth - 40 && !options?.align) {
-              const words = text.split(' ');
-              let line = '';
-              let currentY = y;
-              
-              for (let i = 0; i < words.length; i++) {
-                const testLine = line + words[i] + ' ';
-                const testWidth = ctx.measureText(testLine).width;
-                
-                if (testWidth > pageWidth - 40 && i > 0) {
-                  pdf.text(line.trim(), x, currentY, options);
-                  line = words[i] + ' ';
-                  currentY += 5;
-                } else {
-                  line = testLine;
-                }
-              }
-              pdf.text(line.trim(), x, currentY, options);
-              return currentY + 5;
-            }
-          }
-          
-          // 기본 텍스트 추가
-          pdf.text(text, x, y, options);
-          return y;
-        } catch (error) {
-          // fallback: 영어로 대체
-          const englishText = text
-            .replace(/실시간 대시보드 현황 보고서/g, 'Real-time Dashboard Status Report')
-            .replace(/AI 기반 수입신고 검증 시스템 운영 현황/g, 'AI-based Import Declaration Verification System Status')
-            .replace(/2025 관세청 적극행정·규제혁신 아이디어 대국민 공모전 출품작/g, '2025 Korea Customs Service Innovation Contest Entry')
-            .replace(/핵심 통계/g, 'Key Statistics')
-            .replace(/위험도 분포/g, 'Risk Distribution')
-            .replace(/국가별 수입 현황/g, 'Import Status by Country')
-            .replace(/시간별 트렌드 요약/g, 'Hourly Trend Summary')
-            .replace(/시스템 상태/g, 'System Status');
-          
-          pdf.text(englishText, x, y, options);
-          return y;
-        }
+      // 한글 텍스트를 영어로 변환하는 함수
+      const translateToEnglish = (text: string): string => {
+        return text
+          .replace(/실시간 대시보드 현황 보고서/g, 'Real-time Dashboard Status Report')
+          .replace(/AI 기반 수입신고 검증 시스템 운영 현황/g, 'AI-based Import Declaration Verification System')
+          .replace(/2025 관세청 적극행정·규제혁신 아이디어 대국민 공모전 출품작/g, '2025 Korea Customs Service Innovation Contest Entry')
+          .replace(/핵심 통계/g, 'Key Statistics')
+          .replace(/위험도 분포/g, 'Risk Distribution')
+          .replace(/국가별 수입 현황/g, 'Import Status by Country')
+          .replace(/시간별 트렌드 요약/g, 'Hourly Trend Summary')
+          .replace(/시스템 상태/g, 'System Status')
+          .replace(/보고서 생성일시/g, 'Report Generated')
+          .replace(/오늘 총 검증 건수/g, 'Total Validations Today')
+          .replace(/평균 성공률/g, 'Average Success Rate')
+          .replace(/활성 사용자/g, 'Active Users')
+          .replace(/평균 처리 시간/g, 'Average Processing Time')
+          .replace(/현재 시간 검증/g, 'Current Hour Validations')
+          .replace(/시간당 변화량/g, 'Hourly Change')
+          .replace(/낮음/g, 'Low')
+          .replace(/중간/g, 'Medium')
+          .replace(/높음/g, 'High')
+          .replace(/건/g, 'cases')
+          .replace(/국가/g, 'Country')
+          .replace(/검증 건수/g, 'Validations')
+          .replace(/비율/g, 'Ratio')
+          .replace(/중국/g, 'China')
+          .replace(/미국/g, 'USA')
+          .replace(/일본/g, 'Japan')
+          .replace(/독일/g, 'Germany')
+          .replace(/기타/g, 'Others')
+          .replace(/시스템 정상 운영 중/g, 'System Running Normally')
+          .replace(/실시간 데이터 수집 활성화/g, 'Real-time Data Collection Active')
+          .replace(/AI 모델 정상 동작/g, 'AI Model Operating Normally')
+          .replace(/통계 생성 및 분석 완료/g, 'Statistics Generated and Analyzed')
+          .replace(/최근 6시간 평균 검증 건수/g, 'Average Validations (Last 6 Hours)')
+          .replace(/최근 6시간 평균 성공률/g, 'Average Success Rate (Last 6 Hours)')
+          .replace(/이 보고서는 수입신고 검증 시스템의 실시간 대시보드 데이터를 기반으로 생성되었습니다/g, 'This report is generated based on real-time dashboard data from the import declaration verification system')
+          .replace(/© 2025 수입신고 검증 시스템 - 관세청 디지털 혁신 솔루션/g, '© 2025 Import Declaration Verification System - Korea Customs Digital Innovation Solution')
+          .replace(/초/g, 'sec');
+      };
+
+      // 한글 텍스트를 위한 헬퍼 함수 (영어 변환 방식)
+      const addText = (text: string, x: number, y: number, options?: any) => {
+        const englishText = translateToEnglish(text);
+        pdf.text(englishText, x, y, options);
       };
 
       // 헤더 섹션
       pdf.setFontSize(20);
       pdf.setTextColor(59, 130, 246);
-      addKoreanText('실시간 대시보드 현황 보고서', pageWidth / 2, 30, { align: 'center' });
+      addText('실시간 대시보드 현황 보고서', pageWidth / 2, 30, { align: 'center' });
       
       // 부제목
       pdf.setFontSize(12);
       pdf.setTextColor(107, 114, 128);
-      addKoreanText('AI 기반 수입신고 검증 시스템 운영 현황', pageWidth / 2, 40, { align: 'center' });
+      addText('AI 기반 수입신고 검증 시스템 운영 현황', pageWidth / 2, 40, { align: 'center' });
       
       // 공모전 정보
       pdf.setFontSize(10);
       pdf.setTextColor(34, 197, 94);
-      addKoreanText('2025 관세청 적극행정·규제혁신 아이디어 대국민 공모전 출품작', pageWidth / 2, 50, { align: 'center' });
+      addText('2025 관세청 적극행정·규제혁신 아이디어 대국민 공모전 출품작', pageWidth / 2, 50, { align: 'center' });
       
       // 구분선
       pdf.setDrawColor(229, 231, 235);
@@ -142,13 +136,13 @@ const DashboardPDFReport: React.FC<DashboardPDFReportProps> = ({ stats, classNam
       
       pdf.setFontSize(10);
       pdf.setTextColor(75, 85, 99);
-      addKoreanText(`보고서 생성일시: ${reportDate}`, 20, yPosition);
+      addText(`보고서 생성일시: ${reportDate}`, 20, yPosition);
       yPosition += 15;
       
       // 핵심 통계 섹션
       pdf.setFontSize(16);
       pdf.setTextColor(31, 41, 55);
-      addKoreanText('핵심 통계', 20, yPosition);
+      addText('핵심 통계', 20, yPosition);
       yPosition += 15;
       
       if (currentStats?.summary) {
@@ -158,36 +152,36 @@ const DashboardPDFReport: React.FC<DashboardPDFReportProps> = ({ stats, classNam
         
         pdf.setFontSize(12);
         pdf.setTextColor(59, 130, 246);
-        addKoreanText('오늘 총 검증 건수', leftColumn, yPosition);
+        addText('오늘 총 검증 건수', leftColumn, yPosition);
         pdf.setTextColor(31, 41, 55);
         pdf.text(currentStats.summary.total_validations_today.toLocaleString(), leftColumn + 5, yPosition + 6);
         
         pdf.setTextColor(59, 130, 246);
-        addKoreanText('평균 성공률', rightColumn, yPosition);
+        addText('평균 성공률', rightColumn, yPosition);
         pdf.setTextColor(31, 41, 55);
         pdf.text(`${currentStats.summary.average_success_rate}%`, rightColumn + 5, yPosition + 6);
         
         yPosition += 20;
         
         pdf.setTextColor(59, 130, 246);
-        addKoreanText('활성 사용자', leftColumn, yPosition);
+        addText('활성 사용자', leftColumn, yPosition);
         pdf.setTextColor(31, 41, 55);
         pdf.text(currentStats.summary.active_users.toString(), leftColumn + 5, yPosition + 6);
         
         pdf.setTextColor(59, 130, 246);
-        addKoreanText('평균 처리 시간', rightColumn, yPosition);
+        addText('평균 처리 시간', rightColumn, yPosition);
         pdf.setTextColor(31, 41, 55);
-        pdf.text(currentStats.summary.processing_time_avg, rightColumn + 5, yPosition + 6);
+        pdf.text(translateToEnglish(currentStats.summary.processing_time_avg), rightColumn + 5, yPosition + 6);
         
         yPosition += 20;
         
         pdf.setTextColor(59, 130, 246);
-        addKoreanText('현재 시간 검증', leftColumn, yPosition);
+        addText('현재 시간 검증', leftColumn, yPosition);
         pdf.setTextColor(31, 41, 55);
         pdf.text(currentStats.summary.current_hour_validations.toString(), leftColumn + 5, yPosition + 6);
         
         pdf.setTextColor(59, 130, 246);
-        addKoreanText('시간당 변화량', rightColumn, yPosition);
+        addText('시간당 변화량', rightColumn, yPosition);
         pdf.setTextColor(currentStats.summary.hourly_change >= 0 ? 34 : 239, currentStats.summary.hourly_change >= 0 ? 197 : 68, currentStats.summary.hourly_change >= 0 ? 94 : 68);
         pdf.text(`${currentStats.summary.hourly_change >= 0 ? '+' : ''}${currentStats.summary.hourly_change}`, rightColumn + 5, yPosition + 6);
         
@@ -197,7 +191,7 @@ const DashboardPDFReport: React.FC<DashboardPDFReportProps> = ({ stats, classNam
       // 위험도 분포 섹션
       pdf.setFontSize(16);
       pdf.setTextColor(31, 41, 55);
-      addKoreanText('위험도 분포', 20, yPosition);
+      addText('위험도 분포', 20, yPosition);
       yPosition += 15;
       
       if (currentStats?.charts?.risk_distribution) {
@@ -207,8 +201,8 @@ const DashboardPDFReport: React.FC<DashboardPDFReportProps> = ({ stats, classNam
           
           pdf.setFontSize(12);
           pdf.setTextColor(75, 85, 99);
-          addKoreanText(`${levelName}:`, 25, yPosition);
-          addKoreanText(`${risk.count}건`, 60, yPosition);
+          addText(`${levelName}:`, 25, yPosition);
+          addText(`${risk.count}건`, 60, yPosition);
           
           // 백분율 계산
           const total = currentStats.charts.risk_distribution.reduce((sum: number, item: any) => sum + item.count, 0);
@@ -224,15 +218,15 @@ const DashboardPDFReport: React.FC<DashboardPDFReportProps> = ({ stats, classNam
       // 국가별 통계 섹션
       pdf.setFontSize(16);
       pdf.setTextColor(31, 41, 55);
-      addKoreanText('국가별 수입 현황', 20, yPosition);
+      addText('국가별 수입 현황', 20, yPosition);
       yPosition += 15;
       
       if (currentStats?.charts?.country_stats) {
         pdf.setFontSize(12);
         pdf.setTextColor(75, 85, 99);
-        addKoreanText('국가', 25, yPosition);
-        addKoreanText('검증 건수', 80, yPosition);
-        addKoreanText('비율', 130, yPosition);
+        addText('국가', 25, yPosition);
+        addText('검증 건수', 80, yPosition);
+        addText('비율', 130, yPosition);
         yPosition += 8;
         
         // 구분선
@@ -243,7 +237,7 @@ const DashboardPDFReport: React.FC<DashboardPDFReportProps> = ({ stats, classNam
         currentStats.charts.country_stats.forEach((country: any) => {
           pdf.setFontSize(10);
           pdf.setTextColor(31, 41, 55);
-          addKoreanText(country.name, 25, yPosition);
+          addText(country.name, 25, yPosition);
           pdf.text(country.validations.toString(), 80, yPosition);
           pdf.text(`${country.percentage}%`, 130, yPosition);
           yPosition += 6;
@@ -256,7 +250,7 @@ const DashboardPDFReport: React.FC<DashboardPDFReportProps> = ({ stats, classNam
       if (currentStats?.charts?.hourly_trend && yPosition < pageHeight - 60) {
         pdf.setFontSize(16);
         pdf.setTextColor(31, 41, 55);
-        addKoreanText('시간별 트렌드 요약', 20, yPosition);
+        addText('시간별 트렌드 요약', 20, yPosition);
         yPosition += 15;
         
         const recentHours = currentStats.charts.hourly_trend.slice(-6);
@@ -265,9 +259,9 @@ const DashboardPDFReport: React.FC<DashboardPDFReportProps> = ({ stats, classNam
         
         pdf.setFontSize(12);
         pdf.setTextColor(75, 85, 99);
-        addKoreanText(`최근 6시간 평균 검증 건수: ${avgValidations}건`, 25, yPosition);
+        addText(`최근 6시간 평균 검증 건수: ${avgValidations}건`, 25, yPosition);
         yPosition += 8;
-        addKoreanText(`최근 6시간 평균 성공률: ${avgSuccessRate}%`, 25, yPosition);
+        addText(`최근 6시간 평균 성공률: ${avgSuccessRate}%`, 25, yPosition);
         yPosition += 15;
       }
       
@@ -275,30 +269,30 @@ const DashboardPDFReport: React.FC<DashboardPDFReportProps> = ({ stats, classNam
       if (yPosition < pageHeight - 40) {
         pdf.setFontSize(16);
         pdf.setTextColor(31, 41, 55);
-        addKoreanText('시스템 상태', 20, yPosition);
+        addText('시스템 상태', 20, yPosition);
         yPosition += 15;
         
         pdf.setFontSize(12);
         pdf.setTextColor(34, 197, 94);
-        addKoreanText('✓ 시스템 정상 운영 중', 25, yPosition);
+        addText('✓ 시스템 정상 운영 중', 25, yPosition);
         yPosition += 8;
         
         pdf.setTextColor(75, 85, 99);
-        addKoreanText('✓ 실시간 데이터 수집 활성화', 25, yPosition);
+        addText('✓ 실시간 데이터 수집 활성화', 25, yPosition);
         yPosition += 8;
         
-        addKoreanText('✓ AI 모델 정상 동작', 25, yPosition);
+        addText('✓ AI 모델 정상 동작', 25, yPosition);
         yPosition += 8;
         
-        addKoreanText('✓ 통계 생성 및 분석 완료', 25, yPosition);
+        addText('✓ 통계 생성 및 분석 완료', 25, yPosition);
         yPosition += 15;
       }
       
       // 푸터
       pdf.setFontSize(8);
       pdf.setTextColor(156, 163, 175);
-      addKoreanText('이 보고서는 수입신고 검증 시스템의 실시간 대시보드 데이터를 기반으로 생성되었습니다.', pageWidth / 2, pageHeight - 20, { align: 'center' });
-      addKoreanText('© 2025 수입신고 검증 시스템 - 관세청 디지털 혁신 솔루션', pageWidth / 2, pageHeight - 15, { align: 'center' });
+      addText('이 보고서는 수입신고 검증 시스템의 실시간 대시보드 데이터를 기반으로 생성되었습니다.', pageWidth / 2, pageHeight - 20, { align: 'center' });
+      addText('© 2025 수입신고 검증 시스템 - 관세청 디지털 혁신 솔루션', pageWidth / 2, pageHeight - 15, { align: 'center' });
       
       // PDF 저장
       const fileName = `Dashboard_Report_${new Date().toISOString().split('T')[0]}.pdf`;
