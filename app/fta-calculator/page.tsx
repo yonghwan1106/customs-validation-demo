@@ -162,31 +162,33 @@ export default function FTACalculatorPage() {
       {/* Premium Header */}
       <header className="relative bg-gradient-to-r from-purple-800/95 to-pink-800/95 backdrop-blur-md border-b border-purple-600/30 shadow-2xl">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 relative">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-6 relative">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="flex items-center space-x-3 md:space-x-6">
               <Link href="/">
-                <Button variant="ghost" size="sm" className="text-white hover:bg-white/10 backdrop-blur-sm">
+                <Button variant="ghost" size="sm" className="text-white hover:bg-white/10 backdrop-blur-sm flex-shrink-0">
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   돌아가기
                 </Button>
               </Link>
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-xl blur opacity-75"></div>
-                <div className="relative p-3 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl shadow-xl">
-                  <Calculator className="h-8 w-8 text-white" />
+              <div className="relative flex-shrink-0">
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg md:rounded-xl blur opacity-75"></div>
+                <div className="relative p-2 md:p-3 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg md:rounded-xl shadow-xl">
+                  <Calculator className="h-6 w-6 md:h-8 md:w-8 text-white" />
                 </div>
               </div>
-              <div>
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-white via-purple-100 to-pink-200 bg-clip-text text-transparent">
+              <div className="min-w-0 flex-1">
+                <h1 className="text-xl md:text-3xl font-bold bg-gradient-to-r from-white via-purple-100 to-pink-200 bg-clip-text text-transparent leading-tight">
                   FTA 혜택 계산기
                 </h1>
-                <p className="text-purple-100 text-sm font-medium">자유무역협정 혜택 분석 시스템</p>
+                <p className="text-purple-100 text-xs md:text-sm font-medium">자유무역협정 혜택 분석 시스템</p>
               </div>
             </div>
-            <div className="flex items-center space-x-3">
-              <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm border border-purple-400/30 rounded-full shadow-lg">
-                <span className="text-purple-100 text-sm font-medium">🏆 2025 관세청 공모전 출품작</span>
+            <div className="flex items-center justify-end">
+              <div className="inline-flex items-center px-2 py-1 md:px-4 md:py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm border border-purple-400/30 rounded-full shadow-lg">
+                <span className="text-purple-100 text-xs md:text-sm font-medium text-center leading-tight">
+                  🏆 2025 관세청<br className="md:hidden" /> 공모전 출품작
+                </span>
               </div>
             </div>
           </div>
