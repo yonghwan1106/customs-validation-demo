@@ -49,21 +49,18 @@ export default function FTACalculatorPage() {
   ];
 
   const popularHSCodes = [
-    { code: '8517.12', name: '스마트폰' },
-    { code: '8471.30', name: '노트북' },
-    { code: '9101.11', name: '시계' },
-    { code: '6109.10', name: '티셔츠' },
-    { code: '8528.72', name: 'TV' },
-    { code: '8703.23', name: '승용차' },
-    { code: '3304.30', name: '화장품' },
-    { code: '6403.99', name: '신발' }
+    { code: '8517120000', name: '스마트폰' },
+    { code: '8471300000', name: '노트북' },
+    { code: '9102210000', name: '시계' },
+    { code: '8471490000', name: '데스크탑' },
+    { code: '8528721000', name: 'LCD 모니터' }
   ];
 
   const demoScenarios = [
     {
       name: '스마트폰 수입 - 중국산',
       data: {
-        hsCode: '8517.12',
+        hsCode: '8517120000',
         origin: '중국',
         totalValue: '30000'
       }
@@ -71,16 +68,16 @@ export default function FTACalculatorPage() {
     {
       name: '노트북 수입 - 미국산',
       data: {
-        hsCode: '8471.30',
+        hsCode: '8471300000',
         origin: '미국',
         totalValue: '50000'
       }
     },
     {
-      name: '시계 수입 - 스위스산',
+      name: '시계 수입 - 일본산',
       data: {
-        hsCode: '9101.11',
-        origin: '스위스',
+        hsCode: '9102210000',
+        origin: '일본',
         totalValue: '15000'
       }
     }
@@ -200,38 +197,39 @@ export default function FTACalculatorPage() {
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Form Section */}
           <div className="space-y-6">
-            <Card>
+            <Card className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 shadow-2xl">
               <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <Calculator className="h-5 w-5 text-purple-600" />
+                <CardTitle className="flex items-center space-x-2 text-white">
+                  <Calculator className="h-5 w-5 text-purple-400" />
                   <span>FTA 혜택 계산</span>
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-purple-100">
                   HS코드와 원산지를 입력하여 FTA 혜택을 계산해보세요.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <Label htmlFor="hsCode">HS코드 *</Label>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="hsCode" className="text-white font-medium">HS코드 *</Label>
                     <Input
                       id="hsCode"
                       value={formData.hsCode}
                       onChange={(e) => handleInputChange('hsCode', e.target.value)}
-                      placeholder="예: 8517.12"
+                      placeholder="예: 8517120000 (10자리)"
                       required
+                      className="bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-purple-200 focus:border-purple-400 focus:ring-purple-400 text-base md:text-sm"
                     />
                   </div>
 
-                  <div>
-                    <Label htmlFor="origin">원산지 *</Label>
+                  <div className="space-y-2">
+                    <Label htmlFor="origin" className="text-white font-medium">원산지 *</Label>
                     <Select value={formData.origin} onValueChange={(value) => handleInputChange('origin', value)}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="원산지를 선택하세요" />
+                      <SelectTrigger className="bg-white/10 backdrop-blur-sm border-white/20 text-white focus:border-purple-400 focus:ring-purple-400 h-12 md:h-10">
+                        <SelectValue placeholder="원산지를 선택하세요" className="text-purple-200" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="bg-slate-800 border-slate-700">
                         {countries.map((country) => (
-                          <SelectItem key={country} value={country}>
+                          <SelectItem key={country} value={country} className="text-white hover:bg-slate-700">
                             {country}
                           </SelectItem>
                         ))}
@@ -239,8 +237,8 @@ export default function FTACalculatorPage() {
                     </Select>
                   </div>
 
-                  <div>
-                    <Label htmlFor="totalValue">총 금액 (USD) *</Label>
+                  <div className="space-y-2">
+                    <Label htmlFor="totalValue" className="text-white font-medium">총 금액 (USD) *</Label>
                     <Input
                       id="totalValue"
                       type="number"
@@ -249,22 +247,23 @@ export default function FTACalculatorPage() {
                       onChange={(e) => handleInputChange('totalValue', e.target.value)}
                       placeholder="예: 30000.00"
                       required
+                      className="bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-purple-200 focus:border-purple-400 focus:ring-purple-400 text-base md:text-sm"
                     />
                   </div>
 
                   <Button 
                     type="submit" 
-                    className="w-full bg-purple-600 hover:bg-purple-700"
+                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-4 md:py-3 text-lg md:text-base rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
                     disabled={isLoading}
                   >
                     {isLoading ? (
                       <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        <Loader2 className="mr-3 h-5 w-5 animate-spin" />
                         계산 중...
                       </>
                     ) : (
                       <>
-                        <Calculator className="mr-2 h-4 w-4" />
+                        <Calculator className="mr-3 h-5 w-5" />
                         FTA 혜택 계산
                       </>
                     )}
@@ -274,26 +273,26 @@ export default function FTACalculatorPage() {
             </Card>
 
             {/* Popular HS Codes */}
-            <Card>
+            <Card className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 shadow-xl">
               <CardHeader>
-                <CardTitle className="text-lg">인기 HS코드</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-lg text-white">인기 HS코드</CardTitle>
+                <CardDescription className="text-purple-100">
                   자주 사용되는 HS코드를 클릭하여 빠르게 입력하세요.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {popularHSCodes.map((item) => (
                     <Button
                       key={item.code}
                       variant="outline"
                       size="sm"
-                      className="justify-start text-left"
+                      className="justify-start text-left bg-white/5 border-white/20 text-white hover:bg-white/10 hover:border-white/30 transition-all duration-200 p-4 md:p-3 h-auto"
                       onClick={() => loadHSCode(item.code)}
                     >
-                      <div>
-                        <div className="font-medium">{item.code}</div>
-                        <div className="text-xs text-gray-500">{item.name}</div>
+                      <div className="text-left">
+                        <div className="font-medium text-base md:text-sm">{item.code}</div>
+                        <div className="text-sm md:text-xs text-purple-200 mt-1">{item.name}</div>
                       </div>
                     </Button>
                   ))}
@@ -302,21 +301,21 @@ export default function FTACalculatorPage() {
             </Card>
 
             {/* Demo Scenarios */}
-            <Card>
+            <Card className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 shadow-xl">
               <CardHeader>
-                <CardTitle className="text-lg">데모 시나리오</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-lg text-white">데모 시나리오</CardTitle>
+                <CardDescription className="text-purple-100">
                   미리 준비된 시나리오로 빠르게 테스트해보세요.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2">
+                <div className="space-y-3">
                   {demoScenarios.map((scenario, index) => (
                     <Button
                       key={index}
                       variant="outline"
                       size="sm"
-                      className="w-full justify-start"
+                      className="w-full justify-start bg-white/5 border-white/20 text-white hover:bg-white/10 hover:border-white/30 transition-all duration-200 py-4 md:py-3 text-base md:text-sm"
                       onClick={() => loadDemoScenario(scenario)}
                     >
                       {scenario.name}
@@ -339,12 +338,12 @@ export default function FTACalculatorPage() {
             {result && (
               <>
                 {/* Summary */}
-                <Card>
+                <Card className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 shadow-2xl">
                   <CardHeader>
-                    <CardTitle className="flex items-center justify-between">
+                    <CardTitle className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 text-white">
                       <span>FTA 혜택 요약</span>
                       {result.recommendedOrigin && (
-                        <Badge className="bg-green-100 text-green-800">
+                        <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 shadow-lg px-3 py-1 text-sm self-start md:self-auto">
                           추천: {result.recommendedOrigin}
                         </Badge>
                       )}
@@ -355,24 +354,24 @@ export default function FTACalculatorPage() {
                       const bestBenefit = getBestBenefit(result.benefits);
                       if (bestBenefit) {
                         return (
-                          <div className="grid grid-cols-2 gap-4">
-                            <div className="text-center">
-                              <div className="text-3xl font-bold text-emerald-400">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-4">
+                            <div className="text-center p-4 bg-white/5 rounded-lg border border-emerald-400/30">
+                              <div className="text-2xl md:text-3xl font-bold text-emerald-400 mb-2">
                                 {formatCurrency(bestBenefit.savingsAmount)}
                               </div>
-                              <div className="text-sm text-purple-200">최대 절약액</div>
+                              <div className="text-base md:text-sm text-emerald-200">최대 절약액</div>
                             </div>
-                            <div className="text-center">
-                              <div className="text-3xl font-bold text-purple-400">
+                            <div className="text-center p-4 bg-white/5 rounded-lg border border-purple-400/30">
+                              <div className="text-2xl md:text-3xl font-bold text-purple-400 mb-2">
                                 {Math.round(bestBenefit.savingsPercentage)}%
                               </div>
-                              <div className="text-sm text-purple-200">절약 비율</div>
+                              <div className="text-base md:text-sm text-purple-200">절약 비율</div>
                             </div>
                           </div>
                         );
                       }
                       return (
-                        <div className="text-center text-purple-200">
+                        <div className="text-center text-purple-200 py-8">
                           해당 품목에 대한 FTA 혜택이 없습니다.
                         </div>
                       );
@@ -381,60 +380,60 @@ export default function FTACalculatorPage() {
                 </Card>
 
                 {/* Detailed Benefits */}
-                <Card>
+                <Card className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 shadow-2xl">
                   <CardHeader>
-                    <CardTitle>국가별 FTA 혜택</CardTitle>
+                    <CardTitle className="text-white">국가별 FTA 혜택</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
                       {result.benefits.map((benefit, index) => (
                         <div
                           key={index}
-                          className={`p-4 rounded-lg border ${
+                          className={`p-4 md:p-3 rounded-lg border ${
                             benefit.country === '기본 관세' 
-                              ? 'bg-gray-50 border-gray-200' 
+                              ? 'bg-white/5 border-white/20' 
                               : benefit.savingsAmount > 0 
-                                ? 'bg-green-50 border-green-200' 
-                                : 'bg-yellow-50 border-yellow-200'
+                                ? 'bg-emerald-500/10 border-emerald-400/30' 
+                                : 'bg-yellow-500/10 border-yellow-400/30'
                           }`}
                         >
-                          <div className="flex items-center justify-between mb-3">
-                            <div className="flex items-center space-x-2">
-                              {benefit.country !== '기본 관세' && <Flag className="h-4 w-4 text-blue-600" />}
-                              <span className="font-medium">{benefit.country}</span>
+                          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-2">
+                            <div className="flex items-center space-x-2 flex-wrap">
+                              {benefit.country !== '기본 관세' && <Flag className="h-4 w-4 text-purple-400" />}
+                              <span className="font-medium text-white text-base md:text-sm">{benefit.country}</span>
                               {benefit.requiresCertificate && (
-                                <Badge variant="outline" className="text-xs">
+                                <Badge variant="outline" className="text-xs border-purple-400/50 text-purple-200">
                                   증명서 필요
                                 </Badge>
                               )}
                             </div>
                             {benefit.savingsAmount > 0 && (
-                              <Badge className="bg-green-100 text-green-800">
+                              <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-400/30 self-start md:self-auto">
                                 {formatCurrency(benefit.savingsAmount)} 절약
                               </Badge>
                             )}
                           </div>
                           
-                          <div className="grid grid-cols-2 gap-4 text-sm">
-                            <div>
-                              <span className="text-purple-200">기본 관세율:</span>
-                              <span className="ml-2 font-medium text-white">{benefit.baseRate}</span>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 text-sm">
+                            <div className="bg-white/5 p-3 md:p-2 rounded border border-white/10">
+                              <span className="text-purple-200 block mb-1">기본 관세율:</span>
+                              <span className="font-medium text-white text-base md:text-sm">{benefit.baseRate}</span>
                             </div>
-                            <div>
-                              <span className="text-purple-200">FTA 관세율:</span>
-                              <span className="ml-2 font-medium text-emerald-400">{benefit.ftaRate}</span>
+                            <div className="bg-white/5 p-3 md:p-2 rounded border border-white/10">
+                              <span className="text-purple-200 block mb-1">FTA 관세율:</span>
+                              <span className="font-medium text-emerald-400 text-base md:text-sm">{benefit.ftaRate}</span>
                             </div>
                           </div>
 
                           {benefit.savingsPercentage > 0 && (
-                            <div className="mt-2 flex items-center space-x-1 text-sm text-emerald-400">
+                            <div className="mt-3 flex items-center space-x-1 text-sm text-emerald-400 bg-emerald-500/10 p-2 rounded border border-emerald-400/20">
                               <TrendingUp className="h-4 w-4" />
                               <span>{Math.round(benefit.savingsPercentage)}% 관세 절약</span>
                             </div>
                           )}
 
                           {benefit.certificateType && (
-                            <div className="mt-2 text-xs text-purple-200">
+                            <div className="mt-3 text-xs text-purple-200 bg-white/5 p-2 rounded border border-white/10">
                               필요 증명서: {benefit.certificateType}
                             </div>
                           )}
@@ -445,34 +444,38 @@ export default function FTACalculatorPage() {
                 </Card>
 
                 {/* Additional Info */}
-                <Card>
+                <Card className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 shadow-2xl">
                   <CardHeader>
-                    <CardTitle className="text-lg">FTA 활용 가이드</CardTitle>
+                    <CardTitle className="text-lg text-white">FTA 활용 가이드</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-3 text-sm">
-                      <div className="flex items-start space-x-2">
-                        <span className="text-blue-600 mt-1">💡</span>
-                        <div>
-                          <strong>원산지증명서:</strong> FTA 혜택을 받기 위해서는 해당 국가의 원산지증명서가 필요할 수 있습니다.
+                    <div className="space-y-4 md:space-y-3 text-sm">
+                      <div className="flex items-start space-x-3 p-3 bg-white/5 rounded-lg border border-purple-400/20">
+                        <span className="text-purple-400 mt-1 text-lg">💡</span>
+                        <div className="text-purple-100">
+                          <strong className="text-white block mb-1">원산지증명서:</strong>
+                          <span className="text-base md:text-sm">FTA 혜택을 받기 위해서는 해당 국가의 원산지증명서가 필요할 수 있습니다.</span>
                         </div>
                       </div>
-                      <div className="flex items-start space-x-2">
-                        <span className="text-blue-600 mt-1">📋</span>
-                        <div>
-                          <strong>부가 서류:</strong> 일부 품목의 경우 추가적인 증명 서류가 요구될 수 있습니다.
+                      <div className="flex items-start space-x-3 p-3 bg-white/5 rounded-lg border border-blue-400/20">
+                        <span className="text-blue-400 mt-1 text-lg">📋</span>
+                        <div className="text-purple-100">
+                          <strong className="text-white block mb-1">부가 서류:</strong>
+                          <span className="text-base md:text-sm">일부 품목의 경우 추가적인 증명 서류가 요구될 수 있습니다.</span>
                         </div>
                       </div>
-                      <div className="flex items-start space-x-2">
-                        <span className="text-blue-600 mt-1">🕒</span>
-                        <div>
-                          <strong>처리 시간:</strong> FTA 혜택 적용 시 통관 처리 시간이 달라질 수 있습니다.
+                      <div className="flex items-start space-x-3 p-3 bg-white/5 rounded-lg border border-cyan-400/20">
+                        <span className="text-cyan-400 mt-1 text-lg">🕒</span>
+                        <div className="text-purple-100">
+                          <strong className="text-white block mb-1">처리 시간:</strong>
+                          <span className="text-base md:text-sm">FTA 혜택 적용 시 통관 처리 시간이 달라질 수 있습니다.</span>
                         </div>
                       </div>
-                      <div className="flex items-start space-x-2">
-                        <span className="text-blue-600 mt-1">⚖️</span>
-                        <div>
-                          <strong>법적 요구사항:</strong> 실제 FTA 적용 시에는 관세청의 최신 규정을 확인하시기 바랍니다.
+                      <div className="flex items-start space-x-3 p-3 bg-white/5 rounded-lg border border-yellow-400/20">
+                        <span className="text-yellow-400 mt-1 text-lg">⚖️</span>
+                        <div className="text-purple-100">
+                          <strong className="text-white block mb-1">법적 요구사항:</strong>
+                          <span className="text-base md:text-sm">실제 FTA 적용 시에는 관세청의 최신 규정을 확인하시기 바랍니다.</span>
                         </div>
                       </div>
                     </div>
